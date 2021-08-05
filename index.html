@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<head>
+    <title>Task</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="background">
+        <h1><strong>Simple Pricing</strong></h1>
+        <div class="searchbar">
+        <form class="example" action="action_page.php" style="margin:auto;max-width:600px">
+            <input type="text" placeholder="Your work email.." name="search">
+            <button type="submit">Get Started Free</button>
+          </form>
+        </div>
+          <h5>Free forever version with Unlimited Users. Free 14-days trail to test Premium.</h5>
+            <h2 class="free"><strong>FREE Asana & Jira Migration!</strong>  Transfer everything in seconds!</h2>
+    </div>
+    <div class="cards">
+        <div class="card1">
+            <div class="cardDetails1">
+                <p class="f"id="free">Free</p>
+                <p class="f"><sup class="doll">$</sup> <sub class="doller">0</sub></p>    
+                <div class="duration"><p>per user/month</p></div>
+                <p><strong>Unlimited </strong><span> User</span></p>
+                <p><strong>Basic </strong><span> Permissions</span></p>
+                    <div class="line"><p class="line1">-----------------</p></div>
+                <p><strong>100 MB </strong><span> Total Storage</span></p>
+            </div>
+        </div>
+        <div class="card2">
+            <div class="cardDetails1">
+                <p class="f">Premium</p>
+                <p class="f"><sup class="doll">$    </sup> <sub class="doller" id="dollerChange">  0 </sub><sup id="dollerChangePaise">.50</sup></p>    
+                <div class="duration"><p id="per">per user/month</p></div>
+                <div class="toggle">
+                    <div style="width: 30%;">
+                    <span id="monthly">Monthly</span>
+                    </div>
+                    <div style="width: 50%;">
+                    <label class="switch">
+                    <input type="checkbox">
+                    
+                    <span class="slider round"></span>
+                     </label>
+                    </div>
+                    <div style="width: 30%;">
+                    <span id="active"> Yearly</span>
+                    </div>
+                </div>
+                <p class="save" id="sav">saving 20% a year</p>
+                <p><strong>Free Guest </strong><span> User</span></p>
+                <div class="line"><p class="line1">------------------------</p></div>
+                <p><strong>Advanced </strong><span> Permissions</span>
+                </p>
+                    <div class="line"><p class="line1">-----------------------</p></div>
+                <p><strong>+10GB </strong><span> Storage per user</span></p>
+                <div class="line"><p class="line1">-----------------------</p></div>
+                <p><strong>Priority </strong><span> Support
+                </span>
+                </p>
+            </div> 
+        </div>
+        <div class="card3">
+            <div class="spend">
+                <p class="how"> Calculate how much you'd spend</p>
+                <div class="range">
+                    <span  class="range1"id="slider1-value">1</span>
+                    <span class="range2" id="slider1-computedvalue"onchange="calculate()">4.99</span>
+                </div>
+                <div class="rang">
+                    <span  class="range3">#of users</span>
+                    <span class="range4">per month (billed yearly)</span>
+                </div>
+                <div class="slidecontainer">
+                        <div  min="1" max="200" class="slide" id="slider1"></div>
+                        <div class="range0">
+                        <span calss="range12">1 </span>
+                        <span class="range03" >200+</span>
+                    </div>
+                  </div>
+                  
+            </div>
+        </div>
+    </div>
+
+<div id='slider1-value'></div>
+<div id='slider1-computedvalue'></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var checkbox = document.querySelector('input[type="checkbox"]');
+
+          checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    // do this
+                    document.getElementById("active").style="color:#2196F3";
+                    document.getElementById("monthly").style="color:black";
+                    document.getElementById("sav").style="color:#2196F3";
+                    document.getElementById("dollerChange").style="display:inline"
+                    document.getElementById("dollerChange").innerHTML="4 ";
+                    document.getElementById("dollerChangePaise").innerHTML=".99";
+                    document.getElementById("per").innerHTML="per user/year"
+                    
+                } else {
+                    // do that
+                    document.getElementById("active").style="color:black"
+                    document.getElementById("monthly").style="color:#2196F3"
+                    document.getElementById("sav").style="color:black";
+                    document.getElementById("dollerChange").innerHTML="0";
+                    document.getElementById("dollerChangePaise").innerHTML=".50";
+                    document.getElementById("per").innerHTML="per user/month"
+                }
+            });
+        });
+
+    </script>
+    <script>
+        var slide = document.getElementById("myRange");
+        var output = document.getElementById("range1");
+        
+        output.innerHTML = slide.value;
+        
+        slide.oninput = function() {
+          output.innerHTML = this.value;
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+  $('#slider1').slider({
+    min: 1,
+    max: 200,
+    
+    slide: function(event, ui) {
+      $('#slider1-value').text(ui.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+      computeValue()
+
+    },
+    stop: function(event, ui) {
+      $('#slider1-value').text(ui.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+      computeValue();
+
+    }
+  });
+
+  function computeValue() {
+    var amount = $('#slider1').slider('value');
+    amount = (amount*4.9).toFixed(2);
+    
+    $('#slider1-computedvalue').text("$ "+amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+  }
+})  
+                  
+    </script>
+        
+</body>
+</html>
